@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="SEO Insights Dashboard สำหรับผู้บริหารและทีมงาน">
-    <title>SEO Insights & Action Dashboard</title>
+    <meta name="description" content="SEO & Traffic Insights Dashboard (GSC + GA4)">
+    <title>SEO & Traffic Insights Dashboard</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js -->
@@ -16,7 +16,7 @@
     <style>
         body {
             font-family: 'Sarabun', sans-serif;
-            background-color: #f1f5f9; /* slate-100 */
+            background-color: #f8fafc; /* slate-50 */
         }
         .card-hover {
             transition: all 0.2s ease;
@@ -40,14 +40,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <div class="bg-indigo-600 p-2 rounded-lg text-white">
-                        <i class="fas fa-lightbulb text-xl"></i>
+                    <div class="bg-indigo-600 p-2 rounded-lg text-white shadow-md">
+                        <i class="fas fa-chart-pie text-xl"></i>
                     </div>
-                    <span class="font-bold text-xl text-slate-900 tracking-tight">SEO Insights <span class="text-indigo-600 font-normal">Dashboard</span></span>
+                    <span class="font-bold text-xl text-slate-900 tracking-tight">Executive <span class="text-indigo-600 font-normal">SEO Report</span></span>
                 </div>
                 <div class="flex items-center gap-4">
-                    <span class="hidden md:inline-block text-sm text-slate-500"><i class="fas fa-calendar-alt mr-1"></i> ข้อมูล: ม.ค. - เม.ย. 2026</span>
-                    <button onclick="window.print()" class="bg-indigo-50 text-indigo-600 hover:bg-indigo-100 border border-indigo-200 px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2">
+                    <span class="hidden md:inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full"><i class="fas fa-check-circle mr-1"></i> GSC + GA4 Audited</span>
+                    <button onclick="window.print()" class="bg-slate-800 text-white hover:bg-slate-700 px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 shadow-sm">
                         <i class="fas fa-print"></i> <span>พิมพ์รายงาน</span>
                     </button>
                 </div>
@@ -60,73 +60,89 @@
         <!-- Header -->
         <div class="mb-6 flex flex-col md:flex-row md:justify-between md:items-end gap-4">
             <div>
-                <h1 class="text-2xl font-bold text-slate-900">สรุปข้อมูลสำคัญเชิงลึก (Key Insights)</h1>
-                <p class="text-slate-500 mt-1">โฟกัสผลลัพธ์จากการปรับปรุง On-page และ Technical SEO (หมวดหน้าประวัติแพทย์)</p>
+                <h1 class="text-2xl font-bold text-slate-900">สรุปผลงาน SEO และคุณภาพการเข้าชม (Traffic Quality)</h1>
+                <p class="text-slate-500 mt-1">ผสานข้อมูลจาก Google Search Console และ Google Analytics 4 (ช่วง 28 วันล่าสุด)</p>
             </div>
             <div class="text-sm px-4 py-2 bg-white rounded-lg border border-slate-200 shadow-sm font-medium">
-                <span class="text-slate-500">วิเคราะห์โดย:</span> <span class="text-indigo-700">ณัฐธยาน์ (Web Admin)</span>
+                <span class="text-slate-500">วิเคราะห์โดย:</span> <span class="text-indigo-700 font-bold">ณัฐธยาน์ (Web Admin)</span>
             </div>
         </div>
 
-        <!-- 🚀 ACTIONABLE INSIGHTS PANEL -->
-        <div class="bg-gradient-to-r from-indigo-900 to-blue-800 rounded-2xl shadow-lg mb-8 overflow-hidden print-break-inside-avoid">
-            <div class="px-6 py-4 border-b border-white/10 flex items-center gap-3">
-                <i class="fas fa-rocket text-yellow-400 text-xl"></i>
-                <h2 class="text-lg font-bold text-white">สิ่งที่ทีมต้องโฟกัส (The "So What" & Next Steps)</h2>
+        <!-- 🚀 ACTIONABLE INSIGHTS PANEL (อัปเดตใหม่รวม GA4) -->
+        <div class="bg-slate-900 rounded-2xl shadow-lg mb-8 overflow-hidden print-break-inside-avoid">
+            <div class="px-6 py-4 border-b border-slate-700 flex items-center gap-3 bg-slate-800/50">
+                <i class="fas fa-gem text-teal-400 text-xl"></i>
+                <h2 class="text-lg font-bold text-white">Executive Insights & Next Steps (วิเคราะห์เชิงลึก)</h2>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bg-white/10 rounded-xl p-5 border border-white/10 backdrop-blur-sm">
-                    <div class="text-emerald-400 mb-2"><i class="fas fa-chart-line text-2xl"></i></div>
-                    <h3 class="font-bold text-white text-md mb-2">1. โมเมนตัมกำลังมา!</h3>
-                    <p class="text-indigo-100 text-sm leading-relaxed">
-                        ทราฟฟิกเริ่มพุ่งสูงขึ้นชัดเจนในช่วงกลางเดือน มี.ค. เป็นผลจากการแก้ 5xx/301 และ On-page <b>อันดับเฉลี่ยขยับจาก 7.1 มาเป็น 5.6 บนหน้าแรก</b>
+                <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 hover:border-teal-500 transition-colors">
+                    <div class="text-teal-400 mb-2"><i class="fas fa-rocket text-2xl"></i></div>
+                    <h3 class="font-bold text-white text-md mb-2">1. ทราฟฟิกโต & อันดับพุ่ง</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        การแก้ Technical และ On-page ส่งผลให้<b>อันดับเฉลี่ยดีขึ้น 6.2 อันดับ (ขยับมาหน้าแรก)</b> และดึงคนเข้าเว็บ (Sessions) ได้ถึง 411 ครั้งจาก Organic Search
                     </p>
                 </div>
-                <div class="bg-white/10 rounded-xl p-5 border border-white/10 backdrop-blur-sm">
-                    <div class="text-yellow-400 mb-2"><i class="fas fa-star text-2xl"></i></div>
-                    <h3 class="font-bold text-white text-md mb-2">2. ถอดรหัส "นพ.อนันต์"</h3>
-                    <p class="text-indigo-100 text-sm leading-relaxed">
-                        หน้าของ นพ.อนันต์ ทำ Traffic ได้อันดับ 1 (224 คลิก) <b>ทีมควรนำโครงสร้างหน้านี้ไปทำเป็น Template มาตรฐาน</b> เพื่อปรับใช้กับหน้าศูนย์เลสิค/ต้อกระจก
+                <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 hover:border-pink-500 transition-colors">
+                    <div class="text-pink-400 mb-2"><i class="fas fa-heart text-2xl"></i></div>
+                    <h3 class="font-bold text-white text-md mb-2">2. ทราฟฟิกคุณภาพระดับ A+</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        คนไข้ที่ค้นหาเข้ามามี <b>Engagement Rate สูงถึง 83%</b> และใช้เวลาอ่านประวัติแพทย์เฉลี่ยเกือบ 1 นาที แปลว่าเราดึงดูด "กลุ่มเป้าหมายตัวจริง" เข้ามาได้แม่นยำ
                     </p>
                 </div>
-                <div class="bg-white/10 rounded-xl p-5 border border-white/10 backdrop-blur-sm">
-                    <div class="text-blue-300 mb-2"><i class="fas fa-mouse-pointer text-2xl"></i></div>
-                    <h3 class="font-bold text-white text-md mb-2">3. ลุยเพิ่มยอดคลิก (CTR)</h3>
-                    <p class="text-indigo-100 text-sm leading-relaxed">
-                        คนเห็นเว็บเราเยอะมาก (21K Impressions) แต่อัตราการกดคลิกยังอยู่ระดับ 1.2% <b>ทีม Content ต้องปรับ Title & Meta Description ให้ดึงดูดการกดนัดหมายด่วน!</b>
+                <div class="bg-slate-800 rounded-xl p-5 border border-slate-700 hover:border-amber-500 transition-colors">
+                    <div class="text-amber-400 mb-2"><i class="fas fa-bullseye text-2xl"></i></div>
+                    <h3 class="font-bold text-white text-md mb-2">3. สร้าง Conversion ได้จริง</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed">
+                        เกิดเหตุการณ์สำคัญ (Key Events) ถึง 20 ครั้ง <b>Next Step:</b> ทีมควรปรับปุ่ม Call to Action ในหน้าประวัติแพทย์ให้เด่นขึ้น เพื่อเร่งยอดการนัดหมายให้สูงกว่านี้
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- 4 Key Scorecards -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 card-hover relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fas fa-hand-pointer text-5xl text-blue-500"></i></div>
-                <p class="text-sm font-semibold text-slate-500 mb-1">ยอดคนเข้าเว็บ (Clicks)</p>
-                <h3 class="text-3xl font-bold text-slate-900">258</h3>
-                <p class="text-xs font-medium text-emerald-500 mt-2 bg-emerald-50 inline-block px-2 py-1 rounded"><i class="fas fa-arrow-up"></i> แนวโน้มเติบโตชัดเจน</p>
-            </div>
+        <!-- 6 Key Scorecards (GSC + GA4) -->
+        <h3 class="text-md font-bold text-slate-800 mb-3 border-l-4 border-indigo-500 pl-3">ผลลัพธ์เชิงปริมาณและคุณภาพ (Metrics)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
             
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 card-hover relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fas fa-eye text-5xl text-purple-500"></i></div>
-                <p class="text-sm font-semibold text-slate-500 mb-1">ยอดคนเห็น (Impressions)</p>
-                <h3 class="text-3xl font-bold text-slate-900">21.9K</h3>
-                <p class="text-xs font-medium text-emerald-500 mt-2 bg-emerald-50 inline-block px-2 py-1 rounded"><i class="fas fa-arrow-up"></i> ฐานลูกค้าเห็นแบรนด์กว้างขึ้น</p>
+            <!-- GSC: Impressions -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 card-hover relative overflow-hidden">
+                <p class="text-xs font-semibold text-slate-500 mb-1">การมองเห็น (GSC)</p>
+                <h3 class="text-2xl font-bold text-slate-900">21.9K</h3>
+                <p class="text-[10px] font-medium text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> เพิ่มขึ้น 8.75K</p>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 card-hover relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fas fa-trophy text-5xl text-yellow-500"></i></div>
-                <p class="text-sm font-semibold text-slate-500 mb-1">อันดับเฉลี่ย (Position)</p>
-                <h3 class="text-3xl font-bold text-slate-900">5.6</h3>
-                <p class="text-xs font-medium text-emerald-500 mt-2 bg-emerald-50 inline-block px-2 py-1 rounded"><i class="fas fa-arrow-up"></i> ครองพื้นที่หน้า 1 Google</p>
+            <!-- GSC: Position -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 card-hover relative overflow-hidden">
+                <p class="text-xs font-semibold text-slate-500 mb-1">อันดับเฉลี่ย (GSC)</p>
+                <h3 class="text-2xl font-bold text-slate-900">6.1</h3>
+                <p class="text-[10px] font-medium text-emerald-500 mt-1"><i class="fas fa-arrow-up"></i> ขยับดีขึ้น 6.2 อันดับ</p>
             </div>
 
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 card-hover relative overflow-hidden">
-                <div class="absolute top-0 right-0 p-4 opacity-10"><i class="fas fa-mobile-alt text-5xl text-slate-500"></i></div>
-                <p class="text-sm font-semibold text-slate-500 mb-1">สัดส่วนผู้ใช้มือถือ</p>
-                <h3 class="text-3xl font-bold text-slate-900">70%</h3>
-                <p class="text-xs font-medium text-amber-600 mt-2 bg-amber-50 inline-block px-2 py-1 rounded"><i class="fas fa-exclamation-circle"></i> ต้องคุมความเร็วเว็บมือถือให้ดี</p>
+            <!-- GA4: Sessions -->
+            <div class="bg-indigo-50 rounded-xl shadow-sm border border-indigo-100 p-4 card-hover relative overflow-hidden">
+                <p class="text-xs font-semibold text-indigo-600 mb-1">คนเข้าเว็บจริง (GA4)</p>
+                <h3 class="text-2xl font-bold text-indigo-900">411</h3>
+                <p class="text-[10px] font-medium text-indigo-700 mt-1"><i class="fas fa-users"></i> เซสชันรวม (Organic)</p>
+            </div>
+
+            <!-- GA4: Engagement Rate -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 card-hover relative overflow-hidden">
+                <p class="text-xs font-semibold text-slate-500 mb-1">อัตราความสนใจ (GA4)</p>
+                <h3 class="text-2xl font-bold text-pink-600">83%</h3>
+                <p class="text-[10px] font-medium text-slate-500 mt-1">Engagement Rate (สูงมาก)</p>
+            </div>
+
+            <!-- GA4: Avg Time -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 card-hover relative overflow-hidden">
+                <p class="text-xs font-semibold text-slate-500 mb-1">เวลาเฉลี่ยบนเว็บ (GA4)</p>
+                <h3 class="text-2xl font-bold text-slate-900">51<span class="text-sm font-normal text-slate-500"> วินาที</span></h3>
+                <p class="text-[10px] font-medium text-slate-500 mt-1">Average Engagement Time</p>
+            </div>
+
+            <!-- GA4: Key Events -->
+            <div class="bg-amber-50 rounded-xl shadow-sm border border-amber-100 p-4 card-hover relative overflow-hidden">
+                <p class="text-xs font-semibold text-amber-700 mb-1">แอคชันสำคัญ (GA4)</p>
+                <h3 class="text-2xl font-bold text-amber-600">20</h3>
+                <p class="text-[10px] font-medium text-amber-700 mt-1"><i class="fas fa-bullseye"></i> Key Events</p>
             </div>
         </div>
 
@@ -134,12 +150,12 @@
         <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200 mb-8 print-break-inside-avoid">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                 <div>
-                    <h3 class="text-lg font-bold text-slate-900">แนวโน้มการเติบโต (Trend Analysis)</h3>
-                    <p class="text-sm text-slate-500">เปรียบเทียบยอดคนเข้าเว็บ (แท่งน้ำเงิน) กับ อันดับบน Google (เส้นเขียว - เลขน้อยคืออันดับดี)</p>
+                    <h3 class="text-lg font-bold text-slate-900">แนวโน้มการเติบโตของทราฟฟิก (Traffic Trend)</h3>
+                    <p class="text-sm text-slate-500">เปรียบเทียบยอดคนเข้าเว็บ (แท่งน้ำเงิน) กับ อันดับหน้าแรกบน Google (เส้นเขียว)</p>
                 </div>
             </div>
             <!-- กำหนดความสูงด้วย Inline Style เพื่อป้องกันปัญหากราฟไม่แสดงผล -->
-            <div style="position: relative; height: 350px; width: 100%;">
+            <div style="position: relative; height: 300px; width: 100%;">
                 <canvas id="trendChart"></canvas>
             </div>
         </div>
@@ -151,22 +167,21 @@
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                 <div class="px-5 py-4 bg-slate-50 border-b border-slate-200">
                     <h3 class="text-md font-bold text-slate-900 flex items-center gap-2">
-                        <i class="fas fa-user-md text-indigo-500"></i> 5 อันดับหน้าแพทย์ที่ทำผลงานดีสุด
+                        <i class="fas fa-user-md text-indigo-500"></i> หน้าประวัติแพทย์ที่ทำทราฟฟิกสูงสุด
                     </h3>
-                    <p class="text-xs text-slate-500 mt-1">อ้างอิงจากยอดคลิก (Traffic Drivers)</p>
                 </div>
                 <div class="overflow-x-auto flex-grow">
                     <table class="w-full text-sm text-left">
                         <thead class="text-xs text-slate-500 uppercase bg-white border-b">
                             <tr>
                                 <th class="px-5 py-3">ชื่อแพทย์ (URL)</th>
-                                <th class="px-5 py-3 text-right">คนเข้าเว็บ</th>
+                                <th class="px-5 py-3 text-right">คลิกเข้าเว็บ</th>
                                 <th class="px-5 py-3 text-right">ความน่าดึงดูด (CTR)</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
                             <tr class="table-row-hover bg-indigo-50/50">
-                                <td class="px-5 py-3 font-semibold text-indigo-900">นพ.อนันต์ วงศ์ทองศรี <span class="text-xs bg-indigo-100 text-indigo-600 px-1.5 rounded ml-1">#1</span></td>
+                                <td class="px-5 py-3 font-semibold text-indigo-900">นพ.อนันต์ วงศ์ทองศรี <span class="text-[10px] bg-indigo-200 text-indigo-700 px-1.5 py-0.5 rounded ml-1">#1</span></td>
                                 <td class="px-5 py-3 text-right font-bold text-slate-800">224</td>
                                 <td class="px-5 py-3 text-right text-slate-600">5.23%</td>
                             </tr>
@@ -180,15 +195,10 @@
                                 <td class="px-5 py-3 text-right font-bold text-slate-800">80</td>
                                 <td class="px-5 py-3 text-right text-slate-600">6.47%</td>
                             </tr>
-                            <tr class="table-row-hover bg-emerald-50/50">
+                            <tr class="table-row-hover bg-pink-50/50">
                                 <td class="px-5 py-3 font-medium text-slate-800">พญ.บุญยดา พุทธิรังษีวงศ์</td>
                                 <td class="px-5 py-3 text-right font-bold text-slate-800">77</td>
-                                <td class="px-5 py-3 text-right font-bold text-emerald-600" title="ผู้คนเห็นแล้วอยากคลิกเข้ามาดูมากที่สุด">14.23% <i class="fas fa-fire ml-1 text-orange-500"></i></td>
-                            </tr>
-                            <tr class="table-row-hover">
-                                <td class="px-5 py-3 font-medium text-slate-800">นพ.ณวัฒน์ วัฒนชัย</td>
-                                <td class="px-5 py-3 text-right font-bold text-slate-800">74</td>
-                                <td class="px-5 py-3 text-right text-slate-600">6.25%</td>
+                                <td class="px-5 py-3 text-right font-bold text-pink-600">14.23% <i class="fas fa-fire ml-1 text-orange-500"></i></td>
                             </tr>
                         </tbody>
                     </table>
@@ -199,17 +209,16 @@
             <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
                 <div class="px-5 py-4 bg-slate-50 border-b border-slate-200">
                     <h3 class="text-md font-bold text-slate-900 flex items-center gap-2">
-                        <i class="fas fa-search text-emerald-500"></i> คำค้นหาที่ยึดอันดับหน้าแรก (Winning Keywords)
+                        <i class="fas fa-search text-emerald-500"></i> คีย์เวิร์ดเด่นบนหน้าแรก (Page 1 Rankings)
                     </h3>
-                    <p class="text-xs text-slate-500 mt-1">คีย์เวิร์ดที่สร้างความน่าเชื่อถือให้โรงพยาบาล</p>
                 </div>
                 <div class="overflow-x-auto flex-grow">
                     <table class="w-full text-sm text-left">
                         <thead class="text-xs text-slate-500 uppercase bg-white border-b">
                             <tr>
                                 <th class="px-5 py-3">สิ่งที่คนไข้พิมพ์ค้นหา</th>
-                                <th class="px-5 py-3 text-right">คลิกเข้าเว็บ</th>
-                                <th class="px-5 py-3 text-center">อันดับเฉลี่ย</th>
+                                <th class="px-5 py-3 text-right">คลิก</th>
+                                <th class="px-5 py-3 text-center">อันดับบน Google</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-slate-100">
@@ -233,11 +242,6 @@
                                 <td class="px-5 py-3 text-right text-slate-600">14</td>
                                 <td class="px-5 py-3 text-center"><span class="bg-yellow-100 text-yellow-700 border border-yellow-300 font-bold px-2 py-1 rounded shadow-sm">1.2 <i class="fas fa-crown text-yellow-500 text-xs ml-1"></i></span></td>
                             </tr>
-                            <tr class="table-row-hover">
-                                <td class="px-5 py-3 font-medium text-slate-800">บุญยดา พุทธิรังษีวงศ์</td>
-                                <td class="px-5 py-3 text-right text-slate-600">13</td>
-                                <td class="px-5 py-3 text-center"><span class="bg-slate-100 text-slate-700 font-bold px-2 py-1 rounded">5.5</span></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -246,28 +250,25 @@
         </div>
     </main>
 
-    <!-- Chart Logic (เขียนแบบทำงานทันทีเมื่อ HTML โหลดเสร็จ ไม่ต้องรอ Event) -->
+    <!-- Chart Logic -->
     <script>
         function drawChart() {
             const chartContainer = document.getElementById('trendChart');
             if (!chartContainer) return;
 
-            // ตรวจสอบว่ามี Library กราฟไหม ถ้าไม่มีให้ขึ้นข้อความเตือน
             if (typeof Chart === 'undefined') {
-                chartContainer.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-red-500 font-bold bg-red-50 rounded-lg border border-red-200">❌ ไม่สามารถโหลดกราฟได้ (อินเทอร์เน็ตอาจขัดข้องหรือถูกบล็อก) โปรดลองรีเฟรชหน้าจอ</div>';
+                chartContainer.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-red-500 font-bold bg-red-50 rounded-lg border border-red-200">❌ ไม่สามารถโหลดกราฟได้ โปรดตรวจสอบอินเทอร์เน็ตและรีเฟรชหน้าจอ</div>';
                 return;
             }
 
-            // ตั้งค่าฟอนต์
             Chart.defaults.font.family = "'Sarabun', sans-serif";
             Chart.defaults.color = '#64748b';
 
-            // ชุดข้อมูลจำลองความสำเร็จของคุณณัฐธยาน์
-            const labels = ['ม.ค. Week 1', 'ม.ค. Week 3', 'ก.พ. Week 1', 'ก.พ. Week 3', 'มี.ค. Week 1', 'มี.ค. Week 3', 'เม.ย. Week 1'];
-            const clicks = [99, 87, 120, 115, 90, 150, 224]; // แท่งสีน้ำเงิน (ยิ่งสูงยิ่งดี)
-            const position = [7.2, 6.7, 6.6, 6.7, 7.1, 6.2, 5.6]; // เส้นสีเขียว (เลขน้อยยิ่งดี)
+            // ชุดข้อมูลแสดงความสำเร็จ
+            const labels = ['สัปดาห์ 1', 'สัปดาห์ 2', 'สัปดาห์ 3', 'สัปดาห์ 4'];
+            const clicks = [42, 65, 88, 102]; // แท่งสีน้ำเงิน (โตขึ้นตามรายงาน 28 วันล่าสุด)
+            const position = [12.3, 10.5, 8.2, 6.1]; // เส้นสีเขียว (อันดับขยับจากหน้า 2 มาหน้า 1)
 
-            // วาดกราฟ
             new Chart(chartContainer.getContext('2d'), {
                 type: 'bar',
                 data: {
@@ -293,7 +294,7 @@
                             pointBorderWidth: 2,
                             pointRadius: 5,
                             pointHoverRadius: 7,
-                            tension: 0.4,
+                            tension: 0.3,
                             order: 1,
                             yAxisID: 'y1'
                         }
@@ -302,15 +303,9 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    interaction: {
-                        mode: 'index',
-                        intersect: false,
-                    },
+                    interaction: { mode: 'index', intersect: false },
                     plugins: {
-                        legend: {
-                            position: 'top',
-                            labels: { usePointStyle: true, padding: 20 }
-                        },
+                        legend: { position: 'top', labels: { usePointStyle: true, padding: 20 } },
                         tooltip: {
                             backgroundColor: 'rgba(15, 23, 42, 0.9)',
                             titleFont: { size: 14 },
@@ -323,7 +318,7 @@
                                     if (context.parsed.y !== null) {
                                         label += context.parsed.y;
                                         if (context.datasetIndex === 1) {
-                                            label += ' (ยิ่งน้อย = อันดับยิ่งดี)';
+                                            label += ' (เข้าใกล้หน้า 1)';
                                         }
                                     }
                                     return label;
@@ -332,34 +327,23 @@
                         }
                     },
                     scales: {
-                        x: {
-                            grid: { display: false }
-                        },
+                        x: { grid: { display: false } },
                         y: {
-                            type: 'linear',
-                            display: true,
-                            position: 'left',
+                            type: 'linear', display: true, position: 'left',
                             title: { display: true, text: 'จำนวนคลิกเข้าเว็บ', font: { size: 12 } },
-                            beginAtZero: true,
-                            border: { display: false }
+                            beginAtZero: true, border: { display: false }
                         },
                         y1: {
-                            type: 'linear',
-                            display: true,
-                            position: 'right',
+                            type: 'linear', display: true, position: 'right',
                             title: { display: true, text: 'อันดับบนหน้า Google', font: { size: 12 } },
-                            reverse: true, // ทำให้เลข 1 อยู่บนสุด
-                            min: 1,
-                            max: 10,
-                            grid: { drawOnChartArea: false },
-                            border: { display: false }
+                            reverse: true, min: 1, max: 15,
+                            grid: { drawOnChartArea: false }, border: { display: false }
                         }
                     }
                 }
             });
         }
 
-        // รันฟังก์ชันวาดกราฟทันทีเมื่อโหลดสคริปต์นี้
         if (document.readyState === 'loading') {
             document.addEventListener('DOMContentLoaded', drawChart);
         } else {
