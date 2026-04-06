@@ -68,14 +68,13 @@
             </div>
         </div>
 
-        <!-- 🚀 ACTIONABLE INSIGHTS PANEL (NEW!) -->
+        <!-- 🚀 ACTIONABLE INSIGHTS PANEL -->
         <div class="bg-gradient-to-r from-indigo-900 to-blue-800 rounded-2xl shadow-lg mb-8 overflow-hidden print-break-inside-avoid">
             <div class="px-6 py-4 border-b border-white/10 flex items-center gap-3">
                 <i class="fas fa-rocket text-yellow-400 text-xl"></i>
                 <h2 class="text-lg font-bold text-white">สิ่งที่ทีมต้องโฟกัส (The "So What" & Next Steps)</h2>
             </div>
             <div class="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Insight 1 -->
                 <div class="bg-white/10 rounded-xl p-5 border border-white/10 backdrop-blur-sm">
                     <div class="text-emerald-400 mb-2"><i class="fas fa-chart-line text-2xl"></i></div>
                     <h3 class="font-bold text-white text-md mb-2">1. โมเมนตัมกำลังมา!</h3>
@@ -83,7 +82,6 @@
                         ทราฟฟิกเริ่มพุ่งสูงขึ้นชัดเจนในช่วงกลางเดือน มี.ค. เป็นผลจากการแก้ 5xx/301 และ On-page <b>อันดับเฉลี่ยขยับจาก 7.1 มาเป็น 5.6 บนหน้าแรก</b>
                     </p>
                 </div>
-                <!-- Insight 2 -->
                 <div class="bg-white/10 rounded-xl p-5 border border-white/10 backdrop-blur-sm">
                     <div class="text-yellow-400 mb-2"><i class="fas fa-star text-2xl"></i></div>
                     <h3 class="font-bold text-white text-md mb-2">2. ถอดรหัส "นพ.อนันต์"</h3>
@@ -91,7 +89,6 @@
                         หน้าของ นพ.อนันต์ ทำ Traffic ได้อันดับ 1 (224 คลิก) <b>ทีมควรนำโครงสร้างหน้านี้ไปทำเป็น Template มาตรฐาน</b> เพื่อปรับใช้กับหน้าศูนย์เลสิค/ต้อกระจก
                     </p>
                 </div>
-                <!-- Insight 3 -->
                 <div class="bg-white/10 rounded-xl p-5 border border-white/10 backdrop-blur-sm">
                     <div class="text-blue-300 mb-2"><i class="fas fa-mouse-pointer text-2xl"></i></div>
                     <h3 class="font-bold text-white text-md mb-2">3. ลุยเพิ่มยอดคลิก (CTR)</h3>
@@ -141,7 +138,8 @@
                     <p class="text-sm text-slate-500">เปรียบเทียบยอดคนเข้าเว็บ (แท่งน้ำเงิน) กับ อันดับบน Google (เส้นเขียว - เลขน้อยคืออันดับดี)</p>
                 </div>
             </div>
-            <div class="relative h-[300px] w-full">
+            <!-- กำหนดความสูงด้วย Inline Style เพื่อป้องกันปัญหากราฟไม่แสดงผล -->
+            <div style="position: relative; height: 350px; width: 100%;">
                 <canvas id="trendChart"></canvas>
             </div>
         </div>
@@ -248,111 +246,125 @@
         </div>
     </main>
 
-    <!-- Chart Logic -->
+    <!-- Chart Logic (เขียนแบบทำงานทันทีเมื่อ HTML โหลดเสร็จ ไม่ต้องรอ Event) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Chart Defaults
+        function drawChart() {
+            const chartContainer = document.getElementById('trendChart');
+            if (!chartContainer) return;
+
+            // ตรวจสอบว่ามี Library กราฟไหม ถ้าไม่มีให้ขึ้นข้อความเตือน
+            if (typeof Chart === 'undefined') {
+                chartContainer.parentElement.innerHTML = '<div class="flex items-center justify-center h-full text-red-500 font-bold bg-red-50 rounded-lg border border-red-200">❌ ไม่สามารถโหลดกราฟได้ (อินเทอร์เน็ตอาจขัดข้องหรือถูกบล็อก) โปรดลองรีเฟรชหน้าจอ</div>';
+                return;
+            }
+
+            // ตั้งค่าฟอนต์
             Chart.defaults.font.family = "'Sarabun', sans-serif";
-            Chart.defaults.color = '#64748b'; // slate-500
+            Chart.defaults.color = '#64748b';
 
-            const ctx = document.getElementById('trendChart');
-            if(ctx) {
-                // Data aggregated from Chart.csv (simplified to weekly/bi-weekly points for clarity)
-                const labels = ['ม.ค. Week 1', 'ม.ค. Week 3', 'ก.พ. Week 1', 'ก.พ. Week 3', 'มี.ค. Week 1', 'มี.ค. Week 3', 'เม.ย. Week 1'];
-                const clicks = [99, 87, 120, 115, 90, 150, 224]; // Demonstrating the spike
-                const position = [7.2, 6.7, 6.6, 6.7, 7.1, 6.2, 5.6]; // Decreasing = better ranking
+            // ชุดข้อมูลจำลองความสำเร็จของคุณณัฐธยาน์
+            const labels = ['ม.ค. Week 1', 'ม.ค. Week 3', 'ก.พ. Week 1', 'ก.พ. Week 3', 'มี.ค. Week 1', 'มี.ค. Week 3', 'เม.ย. Week 1'];
+            const clicks = [99, 87, 120, 115, 90, 150, 224]; // แท่งสีน้ำเงิน (ยิ่งสูงยิ่งดี)
+            const position = [7.2, 6.7, 6.6, 6.7, 7.1, 6.2, 5.6]; // เส้นสีเขียว (เลขน้อยยิ่งดี)
 
-                new Chart(ctx.getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [
-                            {
-                                label: 'คนเข้าเว็บ (Clicks)',
-                                data: clicks,
-                                backgroundColor: 'rgba(79, 70, 229, 0.85)', // Indigo-600
-                                borderRadius: 4,
-                                order: 2,
-                                yAxisID: 'y'
-                            },
-                            {
-                                label: 'อันดับบน Google (Position)',
-                                data: position,
-                                type: 'line',
-                                borderColor: '#10b981', // Emerald-500
-                                backgroundColor: '#10b981',
-                                borderWidth: 3,
-                                pointBackgroundColor: '#ffffff',
-                                pointBorderColor: '#10b981',
-                                pointBorderWidth: 2,
-                                pointRadius: 5,
-                                pointHoverRadius: 7,
-                                tension: 0.4, // smooth curve
-                                order: 1,
-                                yAxisID: 'y1'
-                            }
-                        ]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        interaction: {
-                            mode: 'index',
-                            intersect: false,
+            // วาดกราฟ
+            new Chart(chartContainer.getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'คนเข้าเว็บ (Clicks)',
+                            data: clicks,
+                            backgroundColor: 'rgba(79, 70, 229, 0.85)',
+                            borderRadius: 4,
+                            order: 2,
+                            yAxisID: 'y'
                         },
-                        plugins: {
-                            legend: {
-                                position: 'top',
-                                labels: { usePointStyle: true, padding: 20 }
-                            },
-                            tooltip: {
-                                backgroundColor: 'rgba(15, 23, 42, 0.9)', // slate-900
-                                titleFont: { size: 14 },
-                                bodyFont: { size: 13 },
-                                padding: 12,
-                                callbacks: {
-                                    label: function(context) {
-                                        let label = context.dataset.label || '';
-                                        if (label) { label += ': '; }
-                                        if (context.parsed.y !== null) {
-                                            label += context.parsed.y;
-                                            if (context.datasetIndex === 1) {
-                                                label += ' (ยิ่งน้อย = ยิ่งดี)';
-                                            }
+                        {
+                            label: 'อันดับบน Google (Position)',
+                            data: position,
+                            type: 'line',
+                            borderColor: '#10b981',
+                            backgroundColor: '#10b981',
+                            borderWidth: 3,
+                            pointBackgroundColor: '#ffffff',
+                            pointBorderColor: '#10b981',
+                            pointBorderWidth: 2,
+                            pointRadius: 5,
+                            pointHoverRadius: 7,
+                            tension: 0.4,
+                            order: 1,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: { usePointStyle: true, padding: 20 }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 13 },
+                            padding: 12,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y;
+                                        if (context.datasetIndex === 1) {
+                                            label += ' (ยิ่งน้อย = อันดับยิ่งดี)';
                                         }
-                                        return label;
                                     }
+                                    return label;
                                 }
                             }
-                        },
-                        scales: {
-                            x: {
-                                grid: { display: false }
-                            },
-                            y: {
-                                type: 'linear',
-                                display: true,
-                                position: 'left',
-                                title: { display: true, text: 'จำนวนผู้เข้าชม', font: { size: 12 } },
-                                beginAtZero: true,
-                                border: { display: false }
-                            },
-                            y1: {
-                                type: 'linear',
-                                display: true,
-                                position: 'right',
-                                title: { display: true, text: 'อันดับบน Google', font: { size: 12 } },
-                                reverse: true, // IMPORTANT: Position 1 is at the top
-                                min: 1,
-                                max: 10,
-                                grid: { drawOnChartArea: false }, // avoid overlapping grids
-                                border: { display: false }
-                            }
                         }
-                    });
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: { display: true, text: 'จำนวนคลิกเข้าเว็บ', font: { size: 12 } },
+                            beginAtZero: true,
+                            border: { display: false }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: { display: true, text: 'อันดับบนหน้า Google', font: { size: 12 } },
+                            reverse: true, // ทำให้เลข 1 อยู่บนสุด
+                            min: 1,
+                            max: 10,
+                            grid: { drawOnChartArea: false },
+                            border: { display: false }
+                        }
+                    }
                 }
-            }
-        });
+            });
+        }
+
+        // รันฟังก์ชันวาดกราฟทันทีเมื่อโหลดสคริปต์นี้
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', drawChart);
+        } else {
+            drawChart();
+        }
     </script>
 </body>
 </html>
